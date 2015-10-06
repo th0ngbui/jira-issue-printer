@@ -1,0 +1,84 @@
+<!doctype html>
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="issueApp">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Optimize mobile viewport -->
+    <title>helloPay JIRA Iusses Printing</title>
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!-- load bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+
+    @media print {
+        .row:nth-child(2n) {
+            page-break-after: always;
+        }
+        /*.row {page-break-after: always;}*/
+    }
+
+    .issue-title {
+        line-height: 30px;
+        font-weight: bold;
+        font-size: 25px;
+    }
+
+    .issue-heading {
+        font-weight: bold;
+        font-size: 22px;
+    }
+
+    .issue-point {
+        font-weight: bold; 
+    }
+
+    </style>
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <!-- load angular -->
+    <script src="js/controllers/issueController.js"></script>
+    <!-- load up our controller -->
+    <script src="js/services/issueService.js"></script>
+    <!-- load our todo service -->
+    <script src="js/core.js"></script>
+    <!-- load our main application -->
+</head>
+<!-- SET THE CONTROLLER -->
+
+<body ng-controller="issueController">
+    <div class="grid">
+        <div ng-repeat="group in groups" class="row">
+            <!-- <div class="clearfix" ng-if="$index > 0 && $index % 3 == 0"></div> -->
+            <div class="no-gutter">
+                <div ng-repeat="issue in group">
+                    <div class="col-xs-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading text-left">
+                                <span class="issue-heading">
+                                    {{ issue.rank }}
+                                </span>
+                            </div>
+                            <div class="panel-body" style="min-height: 200px;">
+                                <h3 class="issue-title">{{ issue.title }}</h3>
+                            </div>
+                            <div class="issue-footer panel-footer text-right">
+                                <span class="badge" ng-show="issue.point[0] != null">
+                                    <h4 class="issue-point">{{ issue.point[0] }} point(s)</h4>
+                                </span>
+                                <span class="badge" ng-show="issue.point[0] == null">
+                                    <h4>N/A</h4>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
