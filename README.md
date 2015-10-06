@@ -2,12 +2,15 @@
 
 **Requisition**
 
-    install nodejs
+    `sudo apt-get update`
+	`sudo apt-get install nodejs`
+	`sudo apt-get install npm`
 
 **Run the program**
 
-     `npm install`
-     `node server.js`
+	`cd ~/jira-issue-printer`
+    `npm install`
+    `node server.js`
 
 
 ----------
